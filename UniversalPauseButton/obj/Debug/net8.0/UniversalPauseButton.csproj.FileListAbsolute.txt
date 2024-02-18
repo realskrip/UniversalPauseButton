@@ -1,0 +1,15 @@
+D:\Projects\UniversalPauseButton\UniversalPauseButton\bin\Debug\net8.0\UniversalPauseButton.exe
+D:\Projects\UniversalPauseButton\UniversalPauseButton\bin\Debug\net8.0\UniversalPauseButton.deps.json
+D:\Projects\UniversalPauseButton\UniversalPauseButton\bin\Debug\net8.0\UniversalPauseButton.runtimeconfig.json
+D:\Projects\UniversalPauseButton\UniversalPauseButton\bin\Debug\net8.0\UniversalPauseButton.dll
+D:\Projects\UniversalPauseButton\UniversalPauseButton\bin\Debug\net8.0\UniversalPauseButton.pdb
+D:\Projects\UniversalPauseButton\UniversalPauseButton\obj\Debug\net8.0\UniversalPauseButton.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\UniversalPauseButton\UniversalPauseButton\obj\Debug\net8.0\UniversalPauseButton.AssemblyInfoInputs.cache
+D:\Projects\UniversalPauseButton\UniversalPauseButton\obj\Debug\net8.0\UniversalPauseButton.AssemblyInfo.cs
+D:\Projects\UniversalPauseButton\UniversalPauseButton\obj\Debug\net8.0\UniversalPauseButton.csproj.CoreCompileInputs.cache
+D:\Projects\UniversalPauseButton\UniversalPauseButton\obj\Debug\net8.0\UniversalPauseButton.sourcelink.json
+D:\Projects\UniversalPauseButton\UniversalPauseButton\obj\Debug\net8.0\UniversalPauseButton.dll
+D:\Projects\UniversalPauseButton\UniversalPauseButton\obj\Debug\net8.0\refint\UniversalPauseButton.dll
+D:\Projects\UniversalPauseButton\UniversalPauseButton\obj\Debug\net8.0\UniversalPauseButton.pdb
+D:\Projects\UniversalPauseButton\UniversalPauseButton\obj\Debug\net8.0\UniversalPauseButton.genruntimeconfig.cache
+D:\Projects\UniversalPauseButton\UniversalPauseButton\obj\Debug\net8.0\ref\UniversalPauseButton.dll
