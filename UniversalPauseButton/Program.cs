@@ -14,6 +14,27 @@ internal class Program
     [DllImport("user32.dll")]
     private static extern bool GetMessage(out Message lpMsg, IntPtr hWnd, uint wMsgFilterMin, uint wMsgFilterMax);
 
+    [DllImport("user32.dll")]
+    private static extern IntPtr GetForegroundWindow();
+
+    [DllImport("user32.dll")]
+    private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+
+    [DllImport("kernel32.dll")]
+    private static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, uint dwProcessId);
+
+    [DllImport("kernel32.dll")]
+    private static extern bool SuspendThread(IntPtr hThread);
+
+    [DllImport("kernel32.dll")]
+    private static extern bool ResumeThread(IntPtr hThread);
+
+    [DllImport("kernel32.dll")]
+    private static extern void CloseHandle(IntPtr hHandle);
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    private static extern IntPtr OpenThread(uint dwDesiredAccess, bool bInheritHandle, uint dwThreadId);
+
     public struct Message
     {
         public IntPtr hwnd;
@@ -23,15 +44,19 @@ internal class Program
         public uint time;
     }
 
-    /*
-        fsModifiers - Клавиши, которые необходимо нажать в сочетании с клавишей, указанной параметром vk,чтобы
-        сгенерировать WM_HOTKEY сообщение. Если значение равно 0, клавиша vk может нажиматься без сочетаний с другими клавишами.
+    //fsModifiers - keys that must be pressed in combination with the key specified by the vk parameter to generate a wm_hotkey message.
+    //if the value is 0, the vk key can be pressed without any other key combination.
         
-        vk - Код виртуальной горячей клавиши(отслеживаемая клавиша.)
-    */
+    //vk - virtual hotkey code (tracked key.)
+
     const int MYACTION_HOTKEY_ID = 1;
     const uint fsModifiers = 0x0001;
     const uint VK_MENU = 0x12;
+    
+    const uint PROCESS_SUSPEND_RESUME = 0x0002;
+    const uint THREAD_SUSPEND_RESUME = 0x0002;
+    private static IntPtr hProcess = IntPtr.Zero;
+    private static uint processId;
 
     static void Main()
     {
@@ -61,11 +86,59 @@ internal class Program
 
     private static void SuspendActiveApplication()
     {
-        
+        // Get the handle of the active window.
+        IntPtr hWnd = GetForegroundWindow();
+        if (hWnd == IntPtr.Zero)
+        {
+            Console.WriteLine("No active window found.");
+            return;
+        }
+
+        // Get the process ID.
+        GetWindowThreadProcessId(hWnd, out processId);
+
+        // Open the process with suspend permissions.
+        hProcess = OpenProcess(PROCESS_SUSPEND_RESUME, false, processId);
+        if (hProcess == IntPtr.Zero)
+        {
+            Console.WriteLine("Failed to open process.");
+            return;
+        }
+
+        // We get all the process threads and suspend them.
+        Process process = Process.GetProcessById((int)processId);
+        foreach (ProcessThread thread in process.Threads)
+        {
+            IntPtr hThread = OpenThread(THREAD_SUSPEND_RESUME, false, (uint)thread.Id);
+            if (hThread != IntPtr.Zero)
+            {
+                SuspendThread(hThread);
+                CloseHandle(hThread);
+            }
+        }
     }
 
     private static void ResumeSuspendedApplication()
     {
-        
+        if (hProcess == IntPtr.Zero)
+        {
+            Console.WriteLine("No process to resume.");
+            return;
+        }
+
+        // Resuming process flows.
+        Process process = Process.GetProcessById((int)processId);
+        foreach (ProcessThread thread in process.Threads)
+        {
+            IntPtr hThread = OpenThread(THREAD_SUSPEND_RESUME, false, (uint)thread.Id);
+            if (hThread != IntPtr.Zero)
+            {
+                ResumeThread(hThread);
+                CloseHandle(hThread);
+            }
+        }
+
+        CloseHandle(hProcess);
+        hProcess = IntPtr.Zero;
     }
 }
