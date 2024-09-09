@@ -1,7 +1,10 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 internal class Program
 {
+    private static bool action = true;
+
     [DllImport("user32.dll")]
     private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
 
@@ -18,19 +21,11 @@ internal class Program
         public IntPtr wParam;
         public IntPtr lParam;
         public uint time;
-        public Point point;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct Point
-    {
-        public int X;
-        public int Y;
     }
 
     /*
         fsModifiers - Клавиши, которые необходимо нажать в сочетании с клавишей, указанной параметром vk,чтобы
-        сгенерировать WM_HOTKEY сообщение. Если значение равно 0, клавиша vk может нажиматься без сочитаний с другими клавишами.
+        сгенерировать WM_HOTKEY сообщение. Если значение равно 0, клавиша vk может нажиматься без сочетаний с другими клавишами.
         
         vk - Код виртуальной горячей клавиши(отслеживаемая клавиша.)
     */
@@ -47,9 +42,30 @@ internal class Program
         {
             if (message.message == 0x0312 && message.wParam.ToInt32() == MYACTION_HOTKEY_ID)
             {
-                Console.WriteLine("Alt key pressed");
+                if (action == true)
+                {
+                    Console.WriteLine("Alt key pressed. Action: true.");
+                    action = false;
+                    SuspendActiveApplication();
+                }
+                else
+                {
+                    Console.WriteLine("Alt key pressed. Action: false.");
+                    action = true;
+                    ResumeSuspendedApplication();
+                }
             }
         }
         UnregisterHotKey(IntPtr.Zero, MYACTION_HOTKEY_ID);
+    }
+
+    private static void SuspendActiveApplication()
+    {
+        
+    }
+
+    private static void ResumeSuspendedApplication()
+    {
+        
     }
 }
