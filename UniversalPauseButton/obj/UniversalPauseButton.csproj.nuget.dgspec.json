@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dskripnikov\\Desktop\\Scripts\\UniversalPauseButton\\UniversalPauseButton\\UniversalPauseButton.csproj": {}
+    "D:\\Projects\\UniversalPauseButton\\UniversalPauseButton\\UniversalPauseButton.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dskripnikov\\Desktop\\Scripts\\UniversalPauseButton\\UniversalPauseButton\\UniversalPauseButton.csproj": {
+    "D:\\Projects\\UniversalPauseButton\\UniversalPauseButton\\UniversalPauseButton.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dskripnikov\\Desktop\\Scripts\\UniversalPauseButton\\UniversalPauseButton\\UniversalPauseButton.csproj",
+        "projectUniqueName": "D:\\Projects\\UniversalPauseButton\\UniversalPauseButton\\UniversalPauseButton.csproj",
         "projectName": "UniversalPauseButton",
-        "projectPath": "C:\\Users\\dskripnikov\\Desktop\\Scripts\\UniversalPauseButton\\UniversalPauseButton\\UniversalPauseButton.csproj",
-        "packagesPath": "C:\\Users\\dskripnikov\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dskripnikov\\Desktop\\Scripts\\UniversalPauseButton\\UniversalPauseButton\\obj\\",
+        "projectPath": "D:\\Projects\\UniversalPauseButton\\UniversalPauseButton\\UniversalPauseButton.csproj",
+        "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\UniversalPauseButton\\UniversalPauseButton\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\dskripnikov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -38,9 +42,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -61,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-preview.7.24407.12/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

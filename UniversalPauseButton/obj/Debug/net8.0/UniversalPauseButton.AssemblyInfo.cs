@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UniversalPauseButton")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+19e32d86cefaeb4dc064424cac625c233684b212")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c9e34ae5282c00a96c17381eaaaff230bd7258e")]
 [assembly: System.Reflection.AssemblyProductAttribute("UniversalPauseButton")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UniversalPauseButton")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

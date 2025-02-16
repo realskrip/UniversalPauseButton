@@ -35,6 +35,12 @@ internal class Program
     [DllImport("kernel32.dll", SetLastError = true)]
     private static extern IntPtr OpenThread(uint dwDesiredAccess, bool bInheritHandle, uint dwThreadId);
 
+    [DllImport("ntdll.dll", SetLastError = true)]
+    private static extern int NtSuspendProcess(IntPtr processHandle);
+
+    [DllImport("ntdll.dll", SetLastError = true)]
+    private static extern int NtResumeProcess(IntPtr processHandle);
+
     public struct Message
     {
         public IntPtr hwnd;
@@ -101,6 +107,7 @@ internal class Program
         hProcess = OpenProcess(PROCESS_SUSPEND_RESUME, false, processId);
         if (hProcess == IntPtr.Zero)
         {
+            NtSuspendProcess(hProcess);
             Console.WriteLine("Failed to open process.");
             return;
         }
@@ -133,6 +140,7 @@ internal class Program
             IntPtr hThread = OpenThread(THREAD_SUSPEND_RESUME, false, (uint)thread.Id);
             if (hThread != IntPtr.Zero)
             {
+                NtResumeProcess(hProcess);
                 ResumeThread(hThread);
                 CloseHandle(hThread);
             }
